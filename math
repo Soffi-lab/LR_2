@@ -1,0 +1,65 @@
+import math
+from tkinter import *
+
+
+
+def solve(func):
+    x = float(ent_x.get())
+    b = float(ent_b.get())
+
+if func == "sin(x)":
+    if 0.5<x*b<10:
+        result = math.exp(math.sin(x)) - abs(b)
+    elif 0.1 < x * b <= 0.5:
+        result = math.sqrt(abs(math.sin(x) + b))
+    else:
+        result = 2 * math.sin(x) ** 2
+
+elif func == "cos(x)":
+    if 0.5 < x * b < 10:
+        result = math.exp(math.cos(x)) - abs(b)
+    elif 0.1 < x * b <= 0.5:
+        result = math.sqrt(abs(math.cos(x) + b))
+    else:
+        result = 2 * math.cos(x) ** 2
+else:
+    if 0.5 < x * b < 10:
+        result = math.exp(math.exp(x)) - abs(b)
+    elif 0.1 < x * b <= 0.5:
+        result = math.sqrt(abs(math.exp(x) + b))
+    else:
+        result = 2 * math.exp(x) ** 2
+lebel["text"] = result
+
+class RBFunction:
+    def __init__(self, text, val):
+        Radiobutton(text=text,
+                    command=lambda t=text: solvo(t),
+                    variables=var,value =val).pack()
+
+root = Tk()
+root.title("Практическая работа №2 Ветвление")
+root.geometry("500x600")
+Label(text="Выполнила студенткой Пушкова С.А",
+      font=16, fg="pink").pack()
+Label(text="Вариант 6",
+      font=16, fg="pink").pack()
+Label(text="Введите x=",
+      font=12).pack()
+ent_x = Entry(font=13, fg="green")
+ent_x.pack(pady=5)
+Label(text="Введите b=",
+      font=12).pack()
+ent_b = Entry(font=12, fg="green")
+ent_b.pack(pady=5)
+
+var = IntVar()
+var.set(0)
+RBFunction ('sin(x)',  0)
+RBFunction ('cos(x)',  1)
+RBFunction ('exp(x)',  2)
+label = Label(width=40, font=14,
+              fg="darkgreen", bg='lightred')
+label.pack()
+
+root.mainloop()
